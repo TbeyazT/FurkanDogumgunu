@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Baloo 2', cursive;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.surprise-box {
+    width: 300px;
+    height: 300px;
+    background: #ff4757;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    animation: pulse 2s infinite;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.surprise-box::before {
+    content: '🎁';
+    font-size: 80px;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #ff6b81;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 15px 0 0;
+    top: 0;
+    left: 0;
+}
+
+.surprise-box::after {
+    content: 'açmak içib tıkla';
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+.hidden-surprise {
+    display: none;
+    position: relative;
+}
+
+.birthday-text {
+    transform: scale(0);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+h1 {
+    font-size: 4em;
+    color: #fff;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    font-family: 'Pacifico', cursive;
+}
+
+.cake {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 20px auto;
+    filter: drop-shadow(0 0 10px rgba(255,223,0,0.5));
+}
+
+.balloons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.balloon {
+    position: absolute;
+    font-size: 40px;
+    animation: float 6s ease-in infinite;
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    animation: confettiFall 3s linear infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes openBox {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.8) rotate(15deg); }
+    100% { transform: scale(0) rotate(-45deg); opacity: 0; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(720deg); }
+}
+
+.message {
+    font-size: 1.5em;
+    color: #fff;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    margin: 20px;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 1s ease 0.5s;
+}
+
+.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.photo-frame {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    margin: 20px auto;
+    overflow: hidden;
+    transform: scale(0);
+    animation: photoPop 1s ease 1.5s forwards;
+}
+
+@keyframes photoPop {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.sparkles {
+    position: fixed;
+    pointer-events: none;
+    width: 10px;
+    height: 10px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="%23ffffff"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/></svg>');
+    animation: sparkle 1s ease-out;
+}
+
+@keyframes sparkle {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(3); opacity: 0; }
+}

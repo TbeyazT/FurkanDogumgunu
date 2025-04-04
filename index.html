@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise for Furkan! 🎁</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="surprise-box"></div>
+        
+        <div class="hidden-surprise">
+            <div class="birthday-text">
+                <h1>MUTLU YILLAR</h1>
+                <div class="cake">🎂</div>
+                <div class="message show">
+                    İYİKİ DOĞDUN FURKAN!
+                </div>
+                <div class="photo-frame">
+                    <img src="furkan.webp" alt="Furkan" style="width:100%; height:100%; object-fit: cover;">
+                </div>
+            </div>
+            <div class="balloons">
+                <div class="balloon" style="left:10%; animation-delay:0.5s">🎈</div>
+                <div class="balloon" style="left:30%; animation-delay:1s">🎈</div>
+                <div class="balloon" style="left:50%; animation-delay:1.5s">🎈</div>
+                <div class="balloon" style="left:70%; animation-delay:2s">🎈</div>
+                <div class="balloon" style="left:90%; animation-delay:2.5s">🎈</div>
+            </div>
+        </div>
+    </div>
 
+    <audio id="birthdayAudio" src="furkan.mp3"></audio>
+
+    <script>
+        const box = document.querySelector('.surprise-box');
+        const surprise = document.querySelector('.hidden-surprise');
+        const birthdayText = document.querySelector('.birthday-text');
+        const audio = document.getElementById('birthdayAudio');
+
+        box.addEventListener('click', () => {
+            box.style.animation = 'openBox 1s forwards';
+            
+            setTimeout(() => {
+                box.style.display = 'none';
+                surprise.style.display = 'block';
+                birthdayText.style.transform = 'scale(1)';
+                birthdayText.style.opacity = '1';
+                
+                audio.play();
+                
+                for(let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(confetti);
+                }
+            }, 800);
+        });
+
+        document.addEventListener('click', (e) => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkles';
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        });
+
+        document.querySelectorAll('.balloon').forEach(balloon => {
+            balloon.style.left = Math.random() * 100 + '%';
+            balloon.style.animationDelay = Math.random() * 2 + 's';
+        });
+    </script>
+</body>
+</html>
